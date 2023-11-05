@@ -1,6 +1,8 @@
 import { Button, Navbar } from "flowbite-react";
 import logo from "../../assets/logo-sticky-header-retina.png";
+import { Link, useLocation } from "react-router-dom";
 const NavComp = () => {
+  const location = useLocation();
   return (
     <Navbar fluid rounded>
       <Navbar.Brand>
@@ -18,13 +20,24 @@ const NavComp = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="#" active>
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="#">Available Foods</Navbar.Link>
-        <Navbar.Link href="#">Add Food</Navbar.Link>
-        <Navbar.Link href="#">Manage My Food</Navbar.Link>
-        <Navbar.Link href="#">My Food Request</Navbar.Link>
+        <Link to={"/"}>
+          <Navbar.Link active={location.pathname === "/"}>Home</Navbar.Link>
+        </Link>
+        <Link to={"/availablefoods"}>
+          <Navbar.Link active={location.pathname === "/availablefoods"}>
+            Available Foods
+          </Navbar.Link>
+        </Link>
+        <Link to={"/managemyfoods"}>
+          <Navbar.Link active={location.pathname === "/managemyfoods"}>
+            Manage My Foods
+          </Navbar.Link>
+        </Link>
+        <Link to={"/myfoodrequest"}>
+          <Navbar.Link active={location.pathname === "/myfoodrequest"}>
+            My Food Requests
+          </Navbar.Link>
+        </Link>
       </Navbar.Collapse>
     </Navbar>
   );
