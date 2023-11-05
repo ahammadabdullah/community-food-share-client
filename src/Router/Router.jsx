@@ -5,6 +5,7 @@ import ManageMyFood from "../Pages/ManageMyFood";
 import MyFoodRequest from "../Pages/MyFoodRequest";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import Home from "../Pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h3>Home</h3>,
+        element: <Home />,
       },
       {
         path: "/availablefoods",

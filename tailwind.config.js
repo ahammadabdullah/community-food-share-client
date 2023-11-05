@@ -6,7 +6,12 @@ export default {
     "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#114428",
+        secondary: "#8DC53E",
+      },
+    },
   },
   plugins: [require("flowbite/plugin")],
 };
