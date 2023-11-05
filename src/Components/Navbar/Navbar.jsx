@@ -1,8 +1,20 @@
 import { Button, Navbar } from "flowbite-react";
 import logo from "../../assets/logo-sticky-header-retina.png";
 import { Link, useLocation } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-hot-toast";
 const NavComp = () => {
   const location = useLocation();
+  const { user, logout } = useAuth();
+  console.log(user);
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        toast.success("Logged out successfully");
+      })
+      .catch((err) => toast.error(err));
+  };
   return (
     <Navbar fluid rounded>
       <Navbar.Brand>
@@ -13,9 +25,19 @@ const NavComp = () => {
         />
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Link to={"/login"}>
-          <Button className="hover:!bg-secondary bg-primary ">Log in</Button>
-        </Link>
+        {user ? (
+          <Button
+            onClick={handleLogout}
+            className="hover:!bg-secondary bg-primary "
+          >
+            Log Out
+          </Button>
+        ) : (
+          <Link to={"/login"}>
+            <Button className="hover:!bg-secondary bg-primary ">Log in</Button>
+          </Link>
+        )}
+
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
