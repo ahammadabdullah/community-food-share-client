@@ -2,6 +2,7 @@ import { Table } from "flowbite-react";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 const MyFoodRequest = () => {
   const [data, setData] = useState([]);
@@ -13,6 +14,18 @@ const MyFoodRequest = () => {
       .then((res) => setData(res.data));
   }, [user.email]);
   console.log(data);
+
+  const handleReqCancel = (id) => {
+    console.log(id);
+    axios.delete(`http://localhost:3500/requestedfood?id=${id}`).then((res) => {
+      if (res.data.deletedCount) {
+        toast.success("Cancelled Successfully");
+        const filteredData = data.filter((item) => item._id !== id);
+        console.log(filteredData);
+        setData(filteredData);
+      }
+    });
+  };
   return (
     <div>
       <div className="max-w-7xl mx-auto">
@@ -42,7 +55,12 @@ const MyFoodRequest = () => {
               <Table.Cell>{item.donationAmount}</Table.Cell>
               <Table.Cell>{item.status}</Table.Cell>
               <Table.Cell>
-                <button className="p-2 bg-primary text-white">Cancel</button>
+                <button
+                  onClick={() => handleReqCancel(item._id)}
+                  className="p-2 bg-primary text-white"
+                >
+                  Cancel
+                </button>
               </Table.Cell>
             </Table.Row>
           ))}
