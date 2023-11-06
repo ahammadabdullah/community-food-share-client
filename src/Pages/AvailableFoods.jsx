@@ -21,6 +21,19 @@ const AvailableFoods = () => {
     setFoods(filteredItem);
     console.log(filteredItem);
   };
+  const handleSort = () => {
+    axios
+      .get("http://localhost:3500/availablefoods?sort=true")
+      .then((res) => setFoods(res.data));
+
+    // const sortedItem = data.sort((a, b) => {
+    //   const aDate = new Date(a.expiredDateTime);
+    //   const bDate = new Date(b.expiredDateTime);
+    //   return aDate - bDate;
+    // });
+    // setFoods(sortedItem);
+    // console.log(sortedItem);
+  };
   return (
     <div className="max-w-7xl mx-auto my-10">
       <h3 className="mb-5 text-center text-3xl lg:text-5xl font-semibold text-primary">
@@ -46,7 +59,10 @@ const AvailableFoods = () => {
             </button>
           </div>
         </div>
-        <button className="py-2 max-w-fit px-3 bg-primary hover:bg-secondary text-white">
+        <button
+          onClick={handleSort}
+          className="py-2 max-w-fit px-3 bg-primary hover:bg-secondary text-white"
+        >
           Sort By Expiry Date
         </button>
       </div>
