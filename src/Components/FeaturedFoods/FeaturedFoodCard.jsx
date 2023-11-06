@@ -42,7 +42,7 @@ const FeaturedFoodCard = ({ food }) => {
         <p>
           Expiry Date: <span className="font-medium">{expiredDateTime}</span>
         </p>
-        <p>
+        <p className="h-12 overflow-hidden">
           <span className="font-medium">{additionalNotes}</span>
         </p>
         <div className="flex justify-center mt-2">
