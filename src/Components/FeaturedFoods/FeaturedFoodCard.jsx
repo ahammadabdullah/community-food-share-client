@@ -14,11 +14,11 @@ const FeaturedFoodCard = ({ food }) => {
     additionalNotes,
   } = food;
   return (
-    <div className="w-[350px] mx-auto my-3">
+    <div className="w-[350px] bg-white mx-auto my-3">
       <div>
         <img className="w-[350px]" src={foodImage} alt="" />
       </div>
-      <div>
+      <div className="p-4">
         <div className="pt-3 flex justify-between items-center">
           <img
             title="Donator Image"

@@ -3,7 +3,7 @@ import Slider from "../Components/Slider";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-gray-100">
       <Slider />
       <FeaturedFoods />
     </div>

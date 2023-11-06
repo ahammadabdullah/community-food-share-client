@@ -27,7 +27,7 @@ const FeaturedFoods = () => {
       </div>
       <div className="w-fit mx-auto">
         <Link to={"/availablefoods"}>
-          <button className="rounded-md text-white py-2 px-3 bg-primary hover:bg secondary">
+          <button className="rounded-md my-10 text-white py-2 px-3 bg-primary hover:bg secondary">
             Show All
           </button>
         </Link>
