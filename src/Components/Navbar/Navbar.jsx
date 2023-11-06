@@ -16,7 +16,7 @@ const NavComp = () => {
       .catch((err) => toast.error(err));
   };
   return (
-    <Navbar fluid rounded>
+    <Navbar fluid rounded className="max-w-7xl mx-auto">
       <Navbar.Brand>
         <img
           src={logo}

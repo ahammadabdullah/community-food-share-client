@@ -10,7 +10,7 @@ import logo from "../../assets/logo-sticky-header-retina.png";
 
 const FooterBar = () => {
   return (
-    <Footer container>
+    <Footer container className="max-w-7xl mx-auto">
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
