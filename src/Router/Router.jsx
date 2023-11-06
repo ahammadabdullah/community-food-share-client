@@ -38,7 +38,11 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/availablefoods/:id",
+        path: "/foods/:id",
+        element: <DetailedFood />,
+      },
+      {
+        path: "/availablefoods/foods/:id",
         element: <DetailedFood />,
       },
     ],
