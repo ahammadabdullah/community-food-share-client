@@ -1,9 +1,10 @@
 import axios from "axios";
-import { Button, Modal } from "flowbite-react";
+import { Modal } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import moment from "moment";
+import { toast } from "react-hot-toast";
 
 const DetailedFood = () => {
   const { id } = useParams();
@@ -51,7 +52,14 @@ const DetailedFood = () => {
       donationAmount,
       pickupLocation,
     };
-    console.log(requestData);
+    axios
+      .post("http://localhost:3500/request/food", requestData)
+      .then((res) => {
+        if (res.data.acknowledged) {
+          toast.success("Request Successful");
+        }
+      })
+      .catch((err) => toast.error(err));
     setOpenModal(false);
   };
   return (
@@ -189,12 +197,12 @@ const DetailedFood = () => {
               placeholder="Donation Amount"
               id="donationAmount"
             />
-            <Button className="bg-primary hover:bg-secondary" type="submit">
+            <button
+              className="bg-primary hover:bg-secondary text-white py-2 px-3"
+              type="submit"
+            >
               Request
-            </Button>
-            <Button color="gray" onClick={() => setOpenModal(false)}>
-              Decline
-            </Button>
+            </button>
           </form>
         </Modal.Body>
         {/* <Modal.Footer></Modal.Footer> */}
