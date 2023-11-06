@@ -3,6 +3,7 @@ import { Button, Modal } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import moment from "moment";
 
 const DetailedFood = () => {
   const { id } = useParams();
@@ -27,7 +28,30 @@ const DetailedFood = () => {
   } = data;
   const { user } = useAuth();
   console.log(user);
-  const handleFoodRequest = () => {
+  const handleFoodRequest = (e) => {
+    const form = e.target;
+    const foodName = form.foodName.value;
+    const foodImageURL = form.foodImageURL.value;
+    const donorEmail = form.donorEmail.value;
+    const donorName = form.donorName.value;
+    const userEmail = form.userEmail.value;
+    const requestDate = form.requestDate.value;
+    const expiryDate = form.expiryDate.value;
+    const notes = form.notes.value;
+    const donationAmount = form.donationAmount.value;
+    const requestData = {
+      foodName,
+      foodImageURL,
+      donorEmail,
+      donorName,
+      userEmail,
+      requestDate,
+      expiryDate,
+      notes,
+      donationAmount,
+      pickupLocation,
+    };
+    console.log(requestData);
     setOpenModal(false);
   };
   return (
@@ -68,14 +92,14 @@ const DetailedFood = () => {
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
         <Modal.Header>Details</Modal.Header>
         <Modal.Body>
-          <div className="">
+          <form onSubmit={handleFoodRequest}>
             <label htmlFor="foodname">Food Name:</label> <br />
             <input
               disabled
               className="w-full border-gray-400 focus:ring-0 outline-none rounded-md mb-4"
               defaultValue={foodName}
               type="text"
-              id="foodname"
+              id="foodName"
             />
             <br />
             <label htmlFor="foodImageURL">Food Image URL:</label> <br />
@@ -118,7 +142,7 @@ const DetailedFood = () => {
             <input
               disabled
               className="w-full border-gray-400 focus:ring-0 outline-none rounded-md mb-4"
-              defaultValue={user.email}
+              defaultValue={user?.email}
               type="text"
               id="userEmail"
             />
@@ -127,9 +151,18 @@ const DetailedFood = () => {
             <input
               disabled
               className="w-full border-gray-400 focus:ring-0 outline-none rounded-md mb-4"
-              defaultValue={expiredDateTime}
+              defaultValue={moment().format("YYYY-MM-DD")}
               type="text"
               id="requestDate"
+            />
+            <br />
+            <label htmlFor="pickupLocation"> Pickup Location:</label> <br />
+            <input
+              disabled
+              className="w-full border-gray-400 focus:ring-0 outline-none rounded-md mb-4"
+              defaultValue={pickupLocation}
+              type="text"
+              id="pickupLocation"
             />
             <br />
             <label htmlFor="expiryDate"> Expiry Date:</label> <br />
@@ -149,26 +182,22 @@ const DetailedFood = () => {
               id="notes"
             />
             <br />
-            <label htmlFor="donationAmount"> Additional Notes:</label> <br />
+            <label htmlFor="donationAmount"> Donation Money:</label> <br />
             <input
               className="w-full border-primary ring-primary focus:ring-0 outline-none rounded-md mb-4"
               type="number"
               placeholder="Donation Amount"
               id="donationAmount"
             />
-          </div>
+            <Button className="bg-primary hover:bg-secondary" type="submit">
+              Request
+            </Button>
+            <Button color="gray" onClick={() => setOpenModal(false)}>
+              Decline
+            </Button>
+          </form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            className="bg-primary hover:bg-secondary"
-            onClick={handleFoodRequest}
-          >
-            Request
-          </Button>
-          <Button color="gray" onClick={() => setOpenModal(false)}>
-            Decline
-          </Button>
-        </Modal.Footer>
+        {/* <Modal.Footer></Modal.Footer> */}
       </Modal>
     </div>
   );
