@@ -5,34 +5,20 @@ import { BsSearch } from "react-icons/bs";
 import { useLoaderData } from "react-router-dom";
 
 const AvailableFoods = () => {
-  // const [data, setData] = useState([]);
   const data = useLoaderData();
   const [query, setQuery] = useState();
   const [foods, setFoods] = useState(data);
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3500/availablefoods")
-  //     .then((res) => setData(res.data));
-  // }, []);
+
   const handleSearch = () => {
     const filteredItem = data.filter((item) =>
       item.foodName.toLowerCase().includes(query.toLowerCase())
     );
     setFoods(filteredItem);
-    console.log(filteredItem);
   };
   const handleSort = () => {
     axios
       .get("http://localhost:3500/availablefoods?sort=true")
       .then((res) => setFoods(res.data));
-
-    // const sortedItem = data.sort((a, b) => {
-    //   const aDate = new Date(a.expiredDateTime);
-    //   const bDate = new Date(b.expiredDateTime);
-    //   return aDate - bDate;
-    // });
-    // setFoods(sortedItem);
-    // console.log(sortedItem);
   };
   return (
     <div className="max-w-7xl mx-auto my-10">
