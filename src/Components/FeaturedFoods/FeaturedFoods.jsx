@@ -14,11 +14,10 @@ const FeaturedFoods = () => {
       return setFeaturedFoods(sortedData);
     });
   }, []);
-  console.log(featuredFoods);
   // setFeaturedFoods(sortedData);
   return (
     <div className="my-10 max-w-7xl mx-auto">
-      <h3 className="pb-5 text-center text-5xl font-bold text-primary">
+      <h3 className="pb-5 text-center text-3xl lg:text-5xl font-bold text-primary">
         Featured Foods
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
@@ -26,7 +25,7 @@ const FeaturedFoods = () => {
           <FeaturedFoodCard key={food._id} food={food}></FeaturedFoodCard>
         ))}
       </div>
-      <div>
+      <div className="w-fit mx-auto">
         <Link to={"/availablefoods"}>
           <button className="rounded-md text-white py-2 px-3 bg-primary hover:bg secondary">
             Show All
