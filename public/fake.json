@@ -1,4 +1,28 @@
 [
+
+
+_id
+65484c59b6454146f1868ba8
+foodImage
+"https://cdn.discordapp.com/attachments/796439138403352596/117090164606…"
+foodName
+"Pizza"
+donatorImage
+"https://cdn.discordapp.com/attachments/796439138403352596/117090270706…"
+donatorName
+"John Doe"
+foodQuantity
+4
+pickupLocation
+"123 Main Street, Anytown, CA 91234"
+expiredDateTime
+"2023-12-06"
+additionalNotes
+"This pizza is still hot and fresh!"
+donerEmail
+"doner@gmail.com"
+status
+"available"
     {
       "foodImage": "https://cdn.discordapp.com/attachments/796439138403352596/1170901646067372092/635636837767888108-Pizza-crowd.png",
       "foodName": "Pizza",

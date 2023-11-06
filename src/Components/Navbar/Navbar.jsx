@@ -65,6 +65,14 @@ const NavComp = () => {
             Manage My Foods
           </Navbar.Link>
         </Link>
+        <Link to={"/addfood"}>
+          <Navbar.Link
+            className="hover:!text-primary "
+            active={location.pathname === "/addfood"}
+          >
+            Add Food
+          </Navbar.Link>
+        </Link>
         <Link to={"/myfoodrequest"}>
           <Navbar.Link
             className="hover:!text-primary "
