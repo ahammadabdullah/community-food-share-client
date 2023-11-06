@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 const FeaturedFoodCard = ({ food }) => {
   const {
+    _id,
     foodImage,
     foodName,
     donatorImage,
@@ -43,9 +46,11 @@ const FeaturedFoodCard = ({ food }) => {
           <span className="font-medium">{additionalNotes}</span>
         </p>
         <div className="flex justify-center mt-2">
-          <button className="py-2 px-3 bg-primary hover:bg-secondary text-white">
-            View Details
-          </button>
+          <Link to={`availablefoods/${_id}`}>
+            <button className="py-2 px-3 bg-primary hover:bg-secondary text-white">
+              View Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>
