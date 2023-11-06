@@ -26,10 +26,12 @@ const DetailedFood = () => {
     expiredDateTime,
     additionalNotes,
     donerEmail,
+    status,
   } = data;
   const { user } = useAuth();
   console.log(user);
   const handleFoodRequest = (e) => {
+    e.preventDefault();
     const form = e.target;
     const foodName = form.foodName.value;
     const foodImageURL = form.foodImageURL.value;
@@ -51,6 +53,7 @@ const DetailedFood = () => {
       notes,
       donationAmount,
       pickupLocation,
+      status,
     };
     axios
       .post("http://localhost:3500/request/food", requestData)
@@ -193,6 +196,7 @@ const DetailedFood = () => {
               <br />
               <label htmlFor="donationAmount"> Donation Money:</label> <br />
               <input
+                defaultValue={0}
                 className="w-full border-primary ring-primary focus:ring-0 outline-none rounded-md mb-4"
                 type="number"
                 placeholder="Donation Amount"
