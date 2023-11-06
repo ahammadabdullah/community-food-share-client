@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FeaturedFoodCard from "../Components/FeaturedFoods/FeaturedFoodCard";
 import { BsSearch } from "react-icons/bs";
 import { useLoaderData } from "react-router-dom";
@@ -15,7 +15,9 @@ const AvailableFoods = () => {
   //     .then((res) => setData(res.data));
   // }, []);
   const handleSearch = () => {
-    const filteredItem = data.filter((item) => item.foodName.includes(query));
+    const filteredItem = data.filter((item) =>
+      item.foodName.toLowerCase().includes(query.toLowerCase())
+    );
     setFoods(filteredItem);
     console.log(filteredItem);
   };
@@ -24,12 +26,12 @@ const AvailableFoods = () => {
       <h3 className="mb-5 text-center text-3xl lg:text-5xl font-semibold text-primary">
         Available Foods
       </h3>
-      <div>
-        <div className="mx-auto w-[345px]">
-          <div className="md:ml-5 relative ">
+      <div className="md:mx-5 mb-5 flex md:justify-between flex-col md:flex-row gap-4 items-center">
+        <div className="mx-auto md:mx-0 w-[345px]">
+          <div className=" relative ">
             <input
-              className="w-[300px] text-primary  outline-none border-primary border-2 border-r-0"
-              placeholder="Search here"
+              className="w-[300px] text-primary  outline-none border-primary border-2 border-r-0 focus:outline-none focus:border-primary focus:ring-0"
+              placeholder="Search here by name"
               type="text"
               name="search"
               value={query}
@@ -44,6 +46,9 @@ const AvailableFoods = () => {
             </button>
           </div>
         </div>
+        <button className="py-2 max-w-fit px-3 bg-primary hover:bg-secondary text-white">
+          Sort By Expiry Date
+        </button>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-between ">
         {foods.map((item) => (
