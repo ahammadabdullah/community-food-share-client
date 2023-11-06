@@ -15,16 +15,21 @@ const MyFoodRequest = () => {
   }, [user.email]);
   console.log(data);
 
-  const handleReqCancel = (id) => {
-    console.log(id);
-    axios.delete(`http://localhost:3500/requestedfood?id=${id}`).then((res) => {
-      if (res.data.deletedCount) {
-        toast.success("Cancelled Successfully");
-        const filteredData = data.filter((item) => item._id !== id);
-        console.log(filteredData);
-        setData(filteredData);
-      }
-    });
+  const handleReqCancel = ({ _id, status }) => {
+    if (status === "available") {
+      axios
+        .delete(`http://localhost:3500/requestedfood?id=${_id}`)
+        .then((res) => {
+          if (res.data.deletedCount) {
+            toast.success("Cancelled Successfully");
+            const filteredData = data.filter((item) => item._id !== _id);
+            console.log(filteredData);
+            setData(filteredData);
+          }
+        });
+    } else {
+      toast.error("Food Already Delivered");
+    }
   };
   return (
     <div>
@@ -56,7 +61,7 @@ const MyFoodRequest = () => {
               <Table.Cell>{item.status}</Table.Cell>
               <Table.Cell>
                 <button
-                  onClick={() => handleReqCancel(item._id)}
+                  onClick={() => handleReqCancel(item)}
                   className="p-2 bg-primary text-white"
                 >
                   Cancel
