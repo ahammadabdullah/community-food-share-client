@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useAuth from "../Hooks/useAuth";
 import { FiArchive, FiEdit, FiXCircle } from "react-icons/fi";
 
@@ -11,77 +11,6 @@ import {
 } from "@tanstack/react-table";
 import Swal from "sweetalert2";
 
-const columnHelper = createColumnHelper();
-
-const columns = [
-  columnHelper.accessor("foodName", {
-    cell: (info) => info.getValue(),
-    header: () => "Food Name",
-  }),
-
-  columnHelper.accessor("status", {
-    header: () => "Status",
-  }),
-  columnHelper.accessor("manage", {
-    header: () => "Manage",
-    cell: ({ cell }) => (
-      <button className="" onClick={() => handleManage(cell.row.original._id)}>
-        <span className="flex justify-center text-primary">
-          <FiArchive />
-        </span>
-      </button>
-    ),
-  }),
-  columnHelper.accessor("edit", {
-    header: () => "Edit",
-    cell: ({ cell }) => (
-      <button className="" onClick={() => handleEdit(cell.row.original._id)}>
-        <span className="flex justify-center text-primary">
-          <FiEdit></FiEdit>
-        </span>
-      </button>
-    ),
-  }),
-  columnHelper.accessor("delete", {
-    header: () => "Delete",
-    cell: ({ cell }) => (
-      <button
-        className="text-red-600"
-        onClick={() => handleDelete(cell.row.original._id)}
-      >
-        <span className="flex justify-center">
-          <FiXCircle />
-        </span>
-      </button>
-    ),
-  }),
-];
-const handleManage = (id) => {
-  console.log(id);
-};
-const handleEdit = (id) => {
-  console.log(id);
-};
-const handleDelete = (id) => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#114428",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire({
-        title: "Deleted!",
-        text: "Your file has been deleted.",
-        icon: "success",
-      });
-    }
-  });
-};
-
 const MyTable = () => {
   const { user } = useAuth();
   const [foods, setFoods] = useState([]);
@@ -92,8 +21,86 @@ const MyTable = () => {
       .get(`http://localhost:3500/myfoods?email=${user?.email}`)
       .then((res) => setFoods(res.data));
   }, [user?.email]);
+  const data = useMemo(() => [...foods], [foods]);
+
   //   console.log(table);
-  const data = [...foods];
+  const columnHelper = createColumnHelper();
+
+  const handleManage = (id) => {
+    console.log("id", "hid", id);
+  };
+  const handleEdit = (id) => {
+    console.log(id);
+  };
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#114428",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:3500/myfoods?id=${id}`).then((res) => {
+          if (res.data.deletedCount) {
+            const filteredData = data.filter((i) => i._id !== id);
+            setFoods(filteredData);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const columns = [
+    columnHelper.accessor("foodName", {
+      cell: (info) => info.getValue(),
+      header: () => "Food Name",
+    }),
+
+    columnHelper.accessor("status", {
+      header: () => "Status",
+    }),
+    columnHelper.accessor("manage", {
+      header: () => "Manage",
+      cell: ({ cell }) => (
+        <button onClick={() => handleManage(cell.row.original._id)}>
+          <span className="flex justify-center text-primary hover:text-white">
+            <FiArchive />
+          </span>
+        </button>
+      ),
+    }),
+    columnHelper.accessor("edit", {
+      header: () => "Edit",
+      cell: ({ cell }) => (
+        <button onClick={() => handleEdit(cell.row.original._id)}>
+          <span className="flex justify-center text-primary">
+            <FiEdit></FiEdit>
+          </span>
+        </button>
+      ),
+    }),
+    columnHelper.accessor("delete", {
+      header: () => "Delete",
+      cell: ({ cell }) => (
+        <button
+          className="text-red-600"
+          onClick={() => handleDelete(cell.row.original._id)}
+        >
+          <span className="flex justify-center">
+            <FiXCircle />
+          </span>
+        </button>
+      ),
+    }),
+  ];
 
   const table = useReactTable({
     data,
