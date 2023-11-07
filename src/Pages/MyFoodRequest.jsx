@@ -10,7 +10,9 @@ const MyFoodRequest = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/requestedfood?email=${user?.email}`)
+      .get(`http://localhost:3500/requestedfood?email=${user?.email}`, {
+        withCredentials: true,
+      })
       .then((res) => setData(res.data));
   }, [user.email]);
   console.log(data);

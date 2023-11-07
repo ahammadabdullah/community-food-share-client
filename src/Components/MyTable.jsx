@@ -19,7 +19,9 @@ const MyTable = () => {
   //   const [data, setData] = useState([...foods]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/myfoods?email=${user?.email}`)
+      .get(`http://localhost:3500/myfoods?email=${user?.email}`, {
+        withCredentials: true,
+      })
       .then((res) => setFoods(res.data));
   }, [user?.email]);
   const data = useMemo(() => [...foods], [foods]);
