@@ -1,12 +1,17 @@
 import axios from "axios";
 import useAuth from "../Hooks/useAuth";
 import { toast } from "react-hot-toast";
+import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const AddFood = () => {
   const { user } = useAuth();
+  const uid = uuidv4();
+  const navigate = useNavigate();
   const handleAddFood = (e) => {
     e.preventDefault();
     const form = e.target;
+    const uid = form.uid.value;
     const foodImage = form.foodImage.value;
     const foodName = form.foodName.value;
     const donatorImage = form.donatorImage.value;
@@ -18,6 +23,7 @@ const AddFood = () => {
     const donerEmail = form.donerEmail.value;
     const foodStatus = form.foodStatus.value;
     const foodData = {
+      uid,
       foodImage,
       foodName,
       donatorImage,
@@ -34,17 +40,7 @@ const AddFood = () => {
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Food Added Successfully");
-          // window.location.reload();
-          form.foodImage.value = "";
-          form.foodName.value = "";
-          form.donatorImage.value = "";
-          form.donatorName.value = "";
-          form.foodQuantity.value = "";
-          form.pickupLocation.value = "";
-          form.expiredDateTime.value = "";
-          form.additionalNotes.value = "";
-          form.donerEmail.value = "";
-          form.foodStatus.value = "";
+          navigate("/");
         }
       })
       .catch((err) => toast.error(err));
@@ -56,6 +52,15 @@ const AddFood = () => {
           Add food
         </h3>
         <form onSubmit={handleAddFood}>
+          <input
+            required
+            disabled
+            defaultValue={uid}
+            className="w-full bg-gray-100 py-5 pl-5 my-4 rounded-lg text-primary focus:border-primary  focus:outline-none focus:ring-0 "
+            type="text"
+            name="uid"
+            placeholder="Food Name"
+          />
           <input
             required
             className="w-full bg-gray-100 py-5 pl-5 my-4 rounded-lg text-primary focus:border-primary  focus:outline-none focus:ring-0 "

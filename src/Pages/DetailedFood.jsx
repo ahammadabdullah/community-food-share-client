@@ -18,6 +18,7 @@ const DetailedFood = () => {
   }, [id]);
   const {
     _id,
+    uid,
     foodImage,
     foodName,
     donatorName,
@@ -45,6 +46,7 @@ const DetailedFood = () => {
     const notes = form.notes.value;
     const donationAmount = form.donationAmount.value;
     const requestData = {
+      uid,
       foodName,
       foodImageURL,
       donorEmail,
@@ -98,17 +100,32 @@ const DetailedFood = () => {
           <h4>
             Expiry Date: <span className="font-medium">{expiredDateTime}</span>
           </h4>
-          <button
-            onClick={() => setOpenModal(true)}
-            className="py-2 px-3 text-white bg-primary hover:bg-secondary mt-4"
-          >
-            Request
-          </button>
+          {status === "delivered" ? (
+            <button disabled className="py-2 px-3 text-white bg-primary mt-4">
+              Delivered
+            </button>
+          ) : (
+            <button
+              onClick={() => setOpenModal(true)}
+              className="py-2 px-3 text-white bg-primary hover:bg-secondary mt-4"
+            >
+              Request
+            </button>
+          )}
         </div>
         <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
           <Modal.Header>Details</Modal.Header>
           <Modal.Body>
             <form onSubmit={handleFoodRequest}>
+              <label htmlFor="foodID">Food ID:</label> <br />
+              <input
+                disabled
+                className="w-full border-gray-400 bg-gray-100 focus:ring-0 outline-none rounded-md mb-4"
+                defaultValue={uid}
+                type="text"
+                id="foodID"
+              />
+              <br />
               <label htmlFor="foodname">Food Name:</label> <br />
               <input
                 disabled
@@ -125,15 +142,6 @@ const DetailedFood = () => {
                 defaultValue={foodImage}
                 type="text"
                 id="foodImageURL"
-              />
-              <br />
-              <label htmlFor="foodID">Food ID:</label> <br />
-              <input
-                disabled
-                className="w-full border-gray-400 bg-gray-100 focus:ring-0 outline-none rounded-md mb-4"
-                defaultValue={_id}
-                type="text"
-                id="foodID"
               />
               <br />
               <label htmlFor="donorEmail"> Donor Email:</label> <br />

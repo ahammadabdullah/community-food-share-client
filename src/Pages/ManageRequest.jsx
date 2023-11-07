@@ -20,7 +20,7 @@ const ManageRequest = () => {
       status: "delivered",
     };
     axios
-      .put(`http://localhost:3500/requestedfood/${item._id}`, updatedData)
+      .put(`http://localhost:3500/requestedfood/${item.uid}`, updatedData)
       .then((res) => {
         if (res.data.modifiedCount) {
           setDelivered(!delivered);
