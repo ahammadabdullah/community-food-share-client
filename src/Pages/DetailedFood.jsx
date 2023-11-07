@@ -38,6 +38,8 @@ const DetailedFood = () => {
     const donorEmail = form.donorEmail.value;
     const donorName = form.donorName.value;
     const userEmail = form.userEmail.value;
+    const userImageURL = form.userImageURL.value;
+    const userName = form.userName.value;
     const requestDate = form.requestDate.value;
     const expiryDate = form.expiryDate.value;
     const notes = form.notes.value;
@@ -48,6 +50,8 @@ const DetailedFood = () => {
       donorEmail,
       donorName,
       userEmail,
+      userImageURL,
+      userName,
       requestDate,
       expiryDate,
       notes,
@@ -157,6 +161,24 @@ const DetailedFood = () => {
                 defaultValue={user?.email}
                 type="text"
                 id="userEmail"
+              />
+              <br />
+              <label htmlFor="userImageURL"> User Image URL:</label> <br />
+              <input
+                disabled
+                className="w-full border-gray-400 bg-gray-100 focus:ring-0 outline-none rounded-md mb-4"
+                defaultValue={user?.photoURL}
+                type="text"
+                id="userImageURL"
+              />
+              <br />
+              <label htmlFor="userName"> User Name:</label> <br />
+              <input
+                disabled
+                className="w-full border-gray-400 bg-gray-100 focus:ring-0 outline-none rounded-md mb-4"
+                defaultValue={user?.displayName}
+                type="text"
+                id="userName"
               />
               <br />
               <label htmlFor="requestDate"> Request Date:</label> <br />

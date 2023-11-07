@@ -69,11 +69,13 @@ const MyTable = () => {
     columnHelper.accessor("manage", {
       header: () => "Manage",
       cell: ({ cell }) => (
-        <button onClick={() => handleManage(cell.row.original._id)}>
-          <span className="flex justify-center text-primary hover:text-white">
-            <FiArchive />
-          </span>
-        </button>
+        <Link to={`managerequest/${cell.row.original.foodName}`}>
+          <button>
+            <span className="flex justify-center text-primary hover:text-white">
+              <FiArchive />
+            </span>
+          </button>
+        </Link>
       ),
     }),
     // /updatefood/:id

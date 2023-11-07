@@ -2,7 +2,7 @@ import axios from "axios";
 import useAuth from "../Hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateFood = () => {
   const { user } = useAuth();
