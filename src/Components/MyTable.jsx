@@ -26,12 +26,7 @@ const MyTable = () => {
   }, [user?.email]);
   const data = useMemo(() => [...foods], [foods]);
 
-  //   console.log(table);
   const columnHelper = createColumnHelper();
-
-  const handleManage = (id) => {
-    console.log("id", "hid", id);
-  };
 
   const handleDelete = (id) => {
     Swal.fire({

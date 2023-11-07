@@ -41,7 +41,6 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       const loggedUser = { email: userEmail };
-      console.log({ loggedUser, currentUser });
       const url = "http://localhost:3500/jwt";
       if (currentUser) {
         axios
@@ -56,8 +55,6 @@ const AuthProvider = ({ children }) => {
           })
           .then((res) => console.log("cookie cleared", res.data));
       }
-
-      console.log(currentUser);
     });
     return () => {
       unsubscribe();

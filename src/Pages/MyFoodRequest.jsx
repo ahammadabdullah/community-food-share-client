@@ -15,7 +15,6 @@ const MyFoodRequest = () => {
       })
       .then((res) => setData(res.data));
   }, [user.email]);
-  console.log(data);
 
   const handleReqCancel = ({ _id, status }) => {
     if (status === "available") {
@@ -25,7 +24,6 @@ const MyFoodRequest = () => {
           if (res.data.deletedCount) {
             toast.success("Cancelled Successfully");
             const filteredData = data.filter((item) => item._id !== _id);
-            console.log(filteredData);
             setData(filteredData);
           }
         });

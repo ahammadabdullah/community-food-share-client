@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 
 const ManageRequest = () => {
   const { id } = useParams();
-  console.log("name", id);
   const [data, setData] = useState([]);
   const [delivered, setDelivered] = useState(!true);
   useEffect(() => {
@@ -15,7 +14,6 @@ const ManageRequest = () => {
       .then((res) => setData(res.data));
   }, [id, delivered]);
   const handleDelivered = (item) => {
-    console.log(item);
     const updatedData = {
       status: "delivered",
     };
@@ -30,7 +28,6 @@ const ManageRequest = () => {
         toast.error("Something went wrong");
       });
   };
-  console.log(data);
   return (
     <div className="max-w-7xl mx-auto">
       <Table>

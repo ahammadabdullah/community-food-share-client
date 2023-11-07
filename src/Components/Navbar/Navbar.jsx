@@ -6,7 +6,6 @@ import { toast } from "react-hot-toast";
 const NavComp = () => {
   const location = useLocation();
   const { user, logout } = useAuth();
-  console.log(user);
 
   const handleLogout = () => {
     logout()

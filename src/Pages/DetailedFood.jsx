@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Modal } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import moment from "moment";
 import { toast } from "react-hot-toast";
@@ -10,7 +10,7 @@ const DetailedFood = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`http://localhost:3500/availablefoods/${id}`)
@@ -30,7 +30,6 @@ const DetailedFood = () => {
     status,
   } = data;
   const { user } = useAuth();
-  console.log(user);
   const handleFoodRequest = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -66,6 +65,7 @@ const DetailedFood = () => {
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Request Successful");
+          navigate(-1);
         }
       })
       .catch((err) => toast.error(err));
