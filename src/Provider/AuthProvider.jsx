@@ -42,7 +42,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       const loggedUser = { email: userEmail };
       console.log({ loggedUser, currentUser });
-      const url = "https://drivy-server.vercel.app/jwt";
+      const url = "http://localhost:3500/jwt";
       if (currentUser) {
         axios
           .post(url, loggedUser, {
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
           .then((res) => console.log(res.data));
       } else {
         axios
-          .post("https://drivy-server.vercel.app/logout", loggedUser, {
+          .post("http://localhost:3500/logout", loggedUser, {
             withCredentials: true,
           })
           .then((res) => console.log("cookie cleared", res.data));
