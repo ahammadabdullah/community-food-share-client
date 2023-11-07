@@ -8,6 +8,7 @@ import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 import DetailedFood from "../Pages/DetailedFood";
 import AddFood from "../Pages/AddFood";
+import UpdateFood from "../Pages/UpdateFood";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/availablefoods/foods/:id",
         element: <DetailedFood />,
+      },
+      {
+        path: "/updatefood/:id",
+        element: <UpdateFood />,
       },
     ],
   },

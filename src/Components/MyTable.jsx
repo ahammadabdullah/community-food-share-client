@@ -10,6 +10,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyTable = () => {
   const { user } = useAuth();
@@ -29,9 +30,7 @@ const MyTable = () => {
   const handleManage = (id) => {
     console.log("id", "hid", id);
   };
-  const handleEdit = (id) => {
-    console.log(id);
-  };
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -77,14 +76,17 @@ const MyTable = () => {
         </button>
       ),
     }),
+    // /updatefood/:id
     columnHelper.accessor("edit", {
       header: () => "Edit",
       cell: ({ cell }) => (
-        <button onClick={() => handleEdit(cell.row.original._id)}>
-          <span className="flex justify-center text-primary">
-            <FiEdit></FiEdit>
-          </span>
-        </button>
+        <Link to={`/updatefood/${cell.row.original._id}`}>
+          <button>
+            <span className="flex justify-center text-primary">
+              <FiEdit></FiEdit>
+            </span>
+          </button>
+        </Link>
       ),
     }),
     columnHelper.accessor("delete", {
