@@ -60,12 +60,18 @@ const MyFoodRequest = () => {
               <Table.Cell>{item.donationAmount}</Table.Cell>
               <Table.Cell>{item.status}</Table.Cell>
               <Table.Cell>
-                <button
-                  onClick={() => handleReqCancel(item)}
-                  className="p-2 bg-primary text-white"
-                >
-                  Cancel
-                </button>
+                {item.status === "delivered" ? (
+                  <button disabled className="p-2 bg-primary text-white">
+                    Delivered
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleReqCancel(item)}
+                    className="p-2 bg-primary text-white"
+                  >
+                    Cancel
+                  </button>
+                )}
               </Table.Cell>
             </Table.Row>
           ))}
