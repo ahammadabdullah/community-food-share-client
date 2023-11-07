@@ -51,7 +51,7 @@ const AddFood = () => {
   };
   return (
     <div className="bg-gray-100 py-10">
-      <div className=" w-2/3 mx-auto bg-white rounded-lg px-5">
+      <div className=" w-full md:w-2/3 mx-auto bg-white rounded-lg px-5">
         <h3 className="text-3xl font-semibold text-primary text-center pt-3">
           Add food
         </h3>
