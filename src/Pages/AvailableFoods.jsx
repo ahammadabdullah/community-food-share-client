@@ -24,7 +24,9 @@ const AvailableFoods = () => {
   };
   const handleSort = () => {
     axios
-      .get("http://localhost:3500/availablefoods?sort=true")
+      .get(
+        "https://community-food-share-server.vercel.app/availablefoods?sort=true"
+      )
       .then((res) => setFoods(res.data));
   };
   if (loading) {

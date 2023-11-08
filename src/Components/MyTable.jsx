@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import useAuth from "../Hooks/useAuth";
 import { FiArchive, FiEdit, FiXCircle } from "react-icons/fi";
-
 import {
   createColumnHelper,
   flexRender,
@@ -19,9 +18,12 @@ const MyTable = () => {
   //   const [data, setData] = useState([...foods]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/myfoods?email=${user?.email}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://community-food-share-server.vercel.app/myfoods?email=${user?.email}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => setFoods(res.data));
   }, [user?.email]);
   const data = useMemo(() => [...foods], [foods]);
@@ -39,17 +41,21 @@ const MyTable = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3500/myfoods?id=${id}`).then((res) => {
-          if (res.data.deletedCount) {
-            const filteredData = data.filter((i) => i._id !== id);
-            setFoods(filteredData);
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
-          }
-        });
+        axios
+          .delete(
+            `https://community-food-share-server.vercel.app/myfoods?id=${id}`
+          )
+          .then((res) => {
+            if (res.data.deletedCount) {
+              const filteredData = data.filter((i) => i._id !== id);
+              setFoods(filteredData);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };

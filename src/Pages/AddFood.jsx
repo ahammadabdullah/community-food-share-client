@@ -37,7 +37,7 @@ const AddFood = () => {
       status: foodStatus,
     };
     axios
-      .post("http://localhost:3500/addfood", foodData)
+      .post("https://community-food-share-server.vercel.app/addfood", foodData)
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Food Added Successfully");

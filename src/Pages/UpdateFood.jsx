@@ -11,7 +11,9 @@ const UpdateFood = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/availablefoods/${id}`)
+      .get(
+        `https://community-food-share-server.vercel.app/availablefoods/${id}`
+      )
       .then((res) => setData(res.data));
   }, [id]);
   const {
@@ -53,7 +55,10 @@ const UpdateFood = () => {
     };
 
     axios
-      .put(`http://localhost:3500/updatefood?id=${id}`, foodData)
+      .put(
+        `https://community-food-share-server.vercel.app/updatefood?id=${id}`,
+        foodData
+      )
       .then((res) => {
         if (res.data.modifiedCount) {
           toast.success("Food Updated Successfully");

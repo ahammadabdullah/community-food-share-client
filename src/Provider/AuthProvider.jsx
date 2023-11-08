@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       const loggedUser = { email: userEmail };
-      const url = "http://localhost:3500/jwt";
+      const url = "https://community-food-share-server.vercel.app/jwt";
       if (currentUser) {
         axios
           .post(url, loggedUser, {
@@ -50,9 +50,13 @@ const AuthProvider = ({ children }) => {
           .then((res) => console.log(res.data));
       } else {
         axios
-          .post("http://localhost:3500/logout", loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            "https://community-food-share-server.vercel.app/logout",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => console.log("cookie cleared", res.data));
       }
     });

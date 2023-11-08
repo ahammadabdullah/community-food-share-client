@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet";
 import FeaturedFoods from "../Components/FeaturedFoods/FeaturedFoods";
 import Slider from "../Components/Slider";
 import { motion } from "framer-motion";
+import OurConfidence from "../Components/OurConfidence";
+import Banner from "../Components/Banner";
 
 const Home = () => {
   return (
@@ -18,6 +20,8 @@ const Home = () => {
       >
         <FeaturedFoods />
       </motion.div>
+      <OurConfidence />
+      <Banner />
     </div>
   );
 };

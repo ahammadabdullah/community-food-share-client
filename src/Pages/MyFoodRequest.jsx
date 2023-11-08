@@ -17,9 +17,12 @@ const MyFoodRequest = () => {
     queryKey: ["myfoodrequest"],
     queryFn: async () =>
       await axios
-        .get(`http://localhost:3500/requestedfood?email=${user?.email}`, {
-          withCredentials: true,
-        })
+        .get(
+          `https://community-food-share-server.vercel.app/requestedfood?email=${user?.email}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           return res.data;
         }),
@@ -28,7 +31,9 @@ const MyFoodRequest = () => {
   const handleReqCancel = ({ _id, status }) => {
     if (status === "available") {
       axios
-        .delete(`http://localhost:3500/requestedfood?id=${_id}`)
+        .delete(
+          `https://community-food-share-server.vercel.app/requestedfood?id=${_id}`
+        )
         .then((res) => {
           if (res.data.deletedCount) {
             toast.success("Cancelled Successfully");

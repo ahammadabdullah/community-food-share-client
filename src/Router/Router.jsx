@@ -30,7 +30,10 @@ const router = createBrowserRouter([
             <AvailableFoods />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3500/availablefoods"),
+        loader: () =>
+          fetch(
+            "https://community-food-share-server.vercel.app/availablefoods"
+          ),
       },
       {
         path: "/addfood",

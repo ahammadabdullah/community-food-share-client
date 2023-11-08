@@ -11,7 +11,9 @@ const ManageRequest = () => {
   const [delivered, setDelivered] = useState(!true);
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/managerequest?foodName=${id}`)
+      .get(
+        `https://community-food-share-server.vercel.app/managerequest?foodName=${id}`
+      )
       .then((res) => setData(res.data));
   }, [id, delivered]);
   const handleDelivered = (item) => {
@@ -19,7 +21,10 @@ const ManageRequest = () => {
       status: "delivered",
     };
     axios
-      .put(`http://localhost:3500/requestedfood/${item.uid}`, updatedData)
+      .put(
+        `https://community-food-share-server.vercel.app/requestedfood/${item.uid}`,
+        updatedData
+      )
       .then((res) => {
         if (res.data.modifiedCount) {
           setDelivered(!delivered);

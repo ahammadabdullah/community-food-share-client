@@ -7,12 +7,14 @@ const FeaturedFoods = () => {
   const [featuredFoods, setFeaturedFoods] = useState([]);
   // const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3500/availablefoods").then((res) => {
-      const data = res.data;
-      const sortedData = data.sort((a, b) => b.foodQuantity - a.foodQuantity);
+    axios
+      .get("https://community-food-share-server.vercel.app/availablefoods")
+      .then((res) => {
+        const data = res.data;
+        const sortedData = data.sort((a, b) => b.foodQuantity - a.foodQuantity);
 
-      return setFeaturedFoods(sortedData);
-    });
+        return setFeaturedFoods(sortedData);
+      });
   }, []);
   // setFeaturedFoods(sortedData);
   return (

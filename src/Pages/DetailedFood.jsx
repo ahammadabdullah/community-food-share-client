@@ -14,7 +14,9 @@ const DetailedFood = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/availablefoods/${id}`)
+      .get(
+        `https://community-food-share-server.vercel.app/availablefoods/${id}`
+      )
       .then((res) => setData(res.data));
   }, [id]);
   const {
@@ -61,7 +63,10 @@ const DetailedFood = () => {
       status,
     };
     axios
-      .post("http://localhost:3500/request/food", requestData)
+      .post(
+        "https://community-food-share-server.vercel.app/request/food",
+        requestData
+      )
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Request Successful");
