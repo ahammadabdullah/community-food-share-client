@@ -2,8 +2,9 @@ import useAuth from "../Hooks/useAuth";
 import Lottie from "lottie-react";
 import circle from "../../public/circleanimation.json";
 import { useRef } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ children }) => {
   const lottieRef = useRef();
   const { user, loading } = useAuth();

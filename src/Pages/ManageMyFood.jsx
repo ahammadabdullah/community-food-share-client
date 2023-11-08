@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import MyTable from "../Components/MyTable";
 import useAuth from "../Hooks/useAuth";
 
@@ -8,6 +9,9 @@ const ManageMyFood = () => {
   }
   return (
     <div className="bg-gray-100">
+      <Helmet>
+        <title>Mange My Food</title>
+      </Helmet>
       <div className="max-w-7xl mx-auto py-10">
         <h3 className="text-3xl py-4 font-semibold text-primary text-center">
           Manage My Food

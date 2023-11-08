@@ -3,6 +3,7 @@ import useAuth from "../Hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AddFood = () => {
   const { user } = useAuth();
@@ -47,6 +48,9 @@ const AddFood = () => {
   };
   return (
     <div className="bg-gray-100 py-10">
+      <Helmet>
+        <title>Add Food</title>
+      </Helmet>
       <div className=" w-full md:w-2/3 mx-auto bg-white rounded-lg px-5">
         <h3 className="text-3xl font-semibold text-primary text-center pt-3">
           Add food

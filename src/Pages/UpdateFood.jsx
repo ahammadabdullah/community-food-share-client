@@ -1,11 +1,10 @@
 import axios from "axios";
-import useAuth from "../Hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const UpdateFood = () => {
-  const { user } = useAuth();
   const { id } = useParams();
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -65,6 +64,9 @@ const UpdateFood = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Update Food</title>
+      </Helmet>
       <div className="bg-gray-100 py-10">
         <div className=" w-full md:w-2/3 mx-auto bg-white rounded-lg px-5">
           <h3 className="text-3xl font-semibold text-primary text-center pt-3">

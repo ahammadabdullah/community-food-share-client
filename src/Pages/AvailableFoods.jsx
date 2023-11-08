@@ -3,11 +3,18 @@ import { useState } from "react";
 import FeaturedFoodCard from "../Components/FeaturedFoods/FeaturedFoodCard";
 import { BsSearch } from "react-icons/bs";
 import { useLoaderData } from "react-router-dom";
+import Lottie from "lottie-react";
+import circle from "../../public/circleanimation.json";
+import { useRef } from "react";
+import useAuth from "../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const AvailableFoods = () => {
   const data = useLoaderData();
+  const { loading } = useAuth();
   const [query, setQuery] = useState();
   const [foods, setFoods] = useState(data);
+  const lottieRef = useRef();
 
   const handleSearch = () => {
     const filteredItem = data.filter((item) =>
@@ -20,8 +27,14 @@ const AvailableFoods = () => {
       .get("http://localhost:3500/availablefoods?sort=true")
       .then((res) => setFoods(res.data));
   };
+  if (loading) {
+    return <Lottie lottieRef={lottieRef} animationData={circle} />;
+  }
   return (
     <div className="bg-gray-100 py-10">
+      <Helmet>
+        <title>Available Foods</title>
+      </Helmet>
       <div className="max-w-7xl mx-auto ">
         <h3 className="mb-5 text-center text-3xl lg:text-5xl font-semibold text-primary">
           Available Foods

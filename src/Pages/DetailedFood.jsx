@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import moment from "moment";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const DetailedFood = () => {
   const { id } = useParams();
@@ -17,7 +18,6 @@ const DetailedFood = () => {
       .then((res) => setData(res.data));
   }, [id]);
   const {
-    _id,
     uid,
     foodImage,
     foodName,
@@ -73,6 +73,9 @@ const DetailedFood = () => {
   };
   return (
     <div className="bg-gray-100 py-10">
+      <Helmet>
+        <title>{foodName}</title>
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-center">
           <img className="w-[650px]" src={foodImage} alt={foodName} />

@@ -1,12 +1,12 @@
 import { Table } from "flowbite-react";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
 import circle from "../../public/circleanimation.json";
 import { useRef } from "react";
+import { Helmet } from "react-helmet";
 
 const MyFoodRequest = () => {
   // const [data, setData] = useState([]);
@@ -24,7 +24,6 @@ const MyFoodRequest = () => {
           return res.data;
         }),
   });
-  console.log(data);
 
   const handleReqCancel = ({ _id, status }) => {
     if (status === "available") {
@@ -49,6 +48,9 @@ const MyFoodRequest = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>My Food Request</title>
+      </Helmet>
       <div className="max-w-7xl mx-auto">
         <Table>
           <Table.Head>

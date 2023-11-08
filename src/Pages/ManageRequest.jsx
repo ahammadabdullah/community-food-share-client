@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Table } from "flowbite-react";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
@@ -30,6 +31,9 @@ const ManageRequest = () => {
   };
   return (
     <div className="max-w-7xl mx-auto">
+      <Helmet>
+        <title>Manage Request</title>
+      </Helmet>
       <Table>
         <Table.Head>
           <Table.HeadCell>Requester Image</Table.HeadCell>

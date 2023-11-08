@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import FeaturedFoods from "../Components/FeaturedFoods/FeaturedFoods";
 import Slider from "../Components/Slider";
 import { motion } from "framer-motion";
@@ -5,6 +6,9 @@ import { motion } from "framer-motion";
 const Home = () => {
   return (
     <div className="bg-gray-100">
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <Slider />
 
       <motion.div
