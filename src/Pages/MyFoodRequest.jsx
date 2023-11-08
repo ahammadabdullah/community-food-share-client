@@ -3,18 +3,28 @@ import useAuth from "../Hooks/useAuth";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import Lottie from "lottie-react";
+import circle from "../../public/circleanimation.json";
+import { useRef } from "react";
 
 const MyFoodRequest = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const { user } = useAuth();
+  const lottieRef = useRef();
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3500/requestedfood?email=${user?.email}`, {
-        withCredentials: true,
-      })
-      .then((res) => setData(res.data));
-  }, [user.email]);
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["myfoodrequest"],
+    queryFn: async () =>
+      await axios
+        .get(`http://localhost:3500/requestedfood?email=${user?.email}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          return res.data;
+        }),
+  });
+  console.log(data);
 
   const handleReqCancel = ({ _id, status }) => {
     if (status === "available") {
@@ -23,14 +33,20 @@ const MyFoodRequest = () => {
         .then((res) => {
           if (res.data.deletedCount) {
             toast.success("Cancelled Successfully");
-            const filteredData = data.filter((item) => item._id !== _id);
-            setData(filteredData);
+            refetch();
           }
         });
     } else {
       toast.error("Food Already Delivered");
     }
   };
+  if (isLoading) {
+    return (
+      <div className="w-[300px] mx-auto">
+        <Lottie lottieRef={lottieRef} animationData={circle} />
+      </div>
+    );
+  }
   return (
     <div>
       <div className="max-w-7xl mx-auto">
