@@ -12,6 +12,7 @@ const FeaturedFoodCard = ({ food }) => {
     pickupLocation,
     expiredDateTime,
     additionalNotes,
+    status,
   } = food;
   return (
     <div className="w-[350px] bg-white mx-auto my-3">
@@ -19,7 +20,7 @@ const FeaturedFoodCard = ({ food }) => {
         <img className="w-[350px]" src={foodImage} alt="" />
       </div>
       <div className="p-4">
-        <div className="pt-3 flex justify-between items-center">
+        <div className="pt-3 h-12 flex justify-between items-center">
           <img
             title="Donator Image"
             className="w-12 rounded-full"
@@ -33,6 +34,9 @@ const FeaturedFoodCard = ({ food }) => {
         <h3 className="text-center text-3xl text-primary font-semibold">
           {foodName}
         </h3>
+        <p>
+          Status: <span className="font-medium">{status}</span>
+        </p>
         <p>
           Quantity: <span className="font-medium">{foodQuantity}</span>
         </p>
