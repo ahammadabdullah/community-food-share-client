@@ -17,7 +17,7 @@ const FeaturedFoodCard = ({ food }) => {
   return (
     <div className="w-[350px] bg-white mx-auto my-3">
       <div>
-        <img className="w-[350px]" src={foodImage} alt="" />
+        <img className="w-[350px] h-[200px]" src={foodImage} alt="" />
       </div>
       <div className="p-4">
         <div className="pt-3 h-12 flex justify-between items-center">
