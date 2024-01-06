@@ -16,8 +16,10 @@ const ManageMyFood = () => {
         <h3 className="text-3xl py-4 font-semibold text-primary text-center">
           Manage My Food
         </h3>
-        <div className="w-fit mx-auto">
-          <MyTable />
+        <div className="overflow-x-scroll">
+          <div className=" w-min mx-auto ">
+            <MyTable />
+          </div>
         </div>
       </div>
     </div>

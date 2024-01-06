@@ -3,6 +3,7 @@ import logo from "../../assets/logo-sticky-header-retina.png";
 import { Link, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-hot-toast";
+
 const NavComp = () => {
   const location = useLocation();
   const { user, logout } = useAuth();
@@ -14,6 +15,7 @@ const NavComp = () => {
       })
       .catch((err) => toast.error(err));
   };
+
   return (
     <Navbar fluid rounded className="max-w-7xl mx-auto">
       <Navbar.Brand>
@@ -42,40 +44,45 @@ const NavComp = () => {
       <Navbar.Collapse>
         <Link to={"/"}>
           <Navbar.Link
-            className="hover:!text-primary "
-            active={location.pathname === "/"}
+            className={`${
+              location.pathname === "/" ? "!text-primary" : ""
+            } hover:!text-primary `}
           >
             Home
           </Navbar.Link>
         </Link>
         <Link to={"/availablefoods"}>
           <Navbar.Link
-            className="hover:!text-primary "
-            active={location.pathname === "/availablefoods"}
+            className={`${
+              location.pathname === "/availablefoods" ? "!text-primary" : ""
+            } hover:!text-primary `}
           >
             Available Foods
           </Navbar.Link>
         </Link>
         <Link to={"/managemyfoods"}>
           <Navbar.Link
-            className="hover:!text-primary "
-            active={location.pathname === "/managemyfoods"}
+            className={`${
+              location.pathname === "/availablefoods" ? "!text-primary" : ""
+            } hover:!text-primary `}
           >
             Manage My Foods
           </Navbar.Link>
         </Link>
         <Link to={"/addfood"}>
           <Navbar.Link
-            className="hover:!text-primary "
-            active={location.pathname === "/addfood"}
+            className={`${
+              location.pathname === "/addfood" ? "!text-primary" : ""
+            } hover:!text-primary `}
           >
             Add Food
           </Navbar.Link>
         </Link>
         <Link to={"/myfoodrequest"}>
           <Navbar.Link
-            className="hover:!text-primary "
-            active={location.pathname === "/myfoodrequest"}
+            className={`${
+              location.pathname === "/myfoodrequest" ? "!text-primary" : ""
+            } hover:!text-primary `}
           >
             My Food Requests
           </Navbar.Link>

@@ -52,11 +52,11 @@ const MyFoodRequest = () => {
     );
   }
   return (
-    <div>
+    <div className="min-h-[60vh] mt-10">
       <Helmet>
         <title>My Food Request</title>
       </Helmet>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto overflow-x-scroll">
         <Table>
           <Table.Head>
             <Table.HeadCell>Donor Name</Table.HeadCell>

@@ -116,7 +116,7 @@ const MyTable = () => {
   });
 
   return (
-    <table>
+    <table className="overflow-x-scroll">
       <thead className="text-xl">
         {table.getHeaderGroups().map((headerGroup) => (
           <tr className="bg-primary text-white  p-2" key={headerGroup.id}>
